@@ -17,48 +17,39 @@
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
 
 /*jslint sloppy:true */
 /*global Windows:true, require, document, window, module */
 
-var cordova = require('cordova'); 
+var cordova = require('cordova');
 
 module.exports = {
 
-    copy:function(successCallback, errorCallback, args) {
-        var text = "";
+    copy: function (successCallback, errorCallback, args) {
         try {
-            text = args[0];
-        }
-        catch (e) {
-            errorCallback(e);
-            return;
-        }
-       
-        try {
+            var text = args[0];
+
             var dataPackage = new Windows.ApplicationModel.DataTransfer.DataPackage();
             dataPackage.setText(text);
             Windows.ApplicationModel.DataTransfer.Clipboard.setContent(dataPackage);
             successCallback(text);
-        }
-        catch (e) {
+        } catch (e) {
             errorCallback(e);;
         }
     },
-    paste:function(successCallback, errorCallback, args) {
-      var text = "";
-      
-      try {
-        var dataPackageView = Windows.ApplicationModel.DataTransfer.Clipboard.getContent();
-        if (dataPackageView.contains(Windows.ApplicationModel.DataTransfer.StandardDataFormats.text)) {
-            dataPackageView.getTextAsync().then(function (value) {
-            text = value;
-            successCallback(text);
-          });
-        }
-      }
-      catch (e) {
+    paste: function (successCallback, errorCallback, args) {
+        try {
+            var text = "";
+
+            var dataPackageView = Windows.ApplicationModel.DataTransfer.Clipboard.getContent();
+            if (dataPackageView.contains(Windows.ApplicationModel.DataTransfer.StandardDataFormats.text)) {
+                dataPackageView.getTextAsync().then(function (value) {
+                    text = value;
+                    successCallback(text);
+                });
+            }
+        } catch (e) {
             errorCallback(e);;
         }
     }
