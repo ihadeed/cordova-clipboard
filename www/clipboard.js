@@ -20,16 +20,6 @@ Clipboard.prototype.copy = function (text, onSuccess, onFail) {
 };
 
 /**
- * Gets the clipboard content
- *
- * @param {Function} onSuccess The function to call in case of success
- * @param {Function} onFail    The function to call in case of error
- */
-Clipboard.prototype.paste = function (onSuccess, onFail) {
-	cordova.exec(onSuccess, onFail, "Clipboard", "paste", []);
-};
-
-/**
  * Sets the clipboard string value (not object)
  *
  * @param {String}   text      The content to copy to the clipboard
@@ -37,8 +27,18 @@ Clipboard.prototype.paste = function (onSuccess, onFail) {
  * @param {Function} onFail    The function to call in case of error
  */
 Clipboard.prototype.copyString = function (text, onSuccess, onFail) {
-    if (typeof text === "undefined" || text === null) text = "";
-	cordova.exec(onSuccess, onFail, "Clipboard", "copyString", [text]);
+	if (typeof text === "undefined" || text === null) text = "";
+cordova.exec(onSuccess, onFail, "Clipboard", "copyString", [text]);
+};
+
+/**
+ * Gets the clipboard content
+ *
+ * @param {Function} onSuccess The function to call in case of success
+ * @param {Function} onFail    The function to call in case of error
+ */
+Clipboard.prototype.paste = function (onSuccess, onFail) {
+	cordova.exec(onSuccess, onFail, "Clipboard", "paste", []);
 };
 
 /**

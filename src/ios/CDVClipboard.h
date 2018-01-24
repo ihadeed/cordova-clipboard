@@ -4,8 +4,8 @@
 @interface CDVClipboard : CDVPlugin {}
 
 - (void)copy:(CDVInvokedUrlCommand*)command;
-- (void)paste:(CDVInvokedUrlCommand*)command;
 - (void)copyString:(CDVInvokedUrlCommand*)command;
+- (void)paste:(CDVInvokedUrlCommand*)command;
 - (void)pasteString:(CDVInvokedUrlCommand*)command;
 
 @end

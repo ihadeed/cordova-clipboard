@@ -15,13 +15,15 @@ import android.content.ClipDescription;
 public class Clipboard extends CordovaPlugin {
 
     private static final String actionCopy = "copy";
+    private static final String actionCopyString = "copyString";
     private static final String actionPaste = "paste";
+    private static final String actionPasteString = "pasteString";
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         ClipboardManager clipboard = (ClipboardManager) cordova.getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
 
-        if (action.equals(actionCopy)) {
+        if (action.equals(actionCopy) || action.equals(actionCopyString)) {
             try {
                 String text = args.getString(0);
                 ClipData clip = ClipData.newPlainText("Text", text);
@@ -36,7 +38,7 @@ public class Clipboard extends CordovaPlugin {
             } catch (Exception e) {
                 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, e.toString()));
             }
-        } else if (action.equals(actionPaste)) {
+        } else if (action.equals(actionPaste) || action.equals(actionPasteString)) {
             if (!clipboard.getPrimaryClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)) {
                 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.NO_RESULT));
             }

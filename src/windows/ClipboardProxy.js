@@ -52,7 +52,9 @@ module.exports = {
         } catch (e) {
             errorCallback(e);;
         }
-    }
+    },
+    copyString: copy,
+    pasteString: paste
 }; // exports
 
 require("cordova/exec/proxy").add("Clipboard", module.exports);
