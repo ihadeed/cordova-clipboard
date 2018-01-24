@@ -25,6 +25,12 @@ Example:
 
 - The plugin only works with text content.
 
+### iOS
+
+- The new `copyString` and `pasteString` are specifically made for the iOS platform for its pasteboard is an object that can contain multiple data formats, in some circumstances such as in `Wechat(微信)`, the message input box will not accept an object as its paste content but only a string value, thus the new `copyString` and `pasteString` will only set and get the string property of the pasteboard object, not the object itself.
+
+- On other platforms the `copyString` and `pasteString` are purely aliases for `copy` and `paste`.
+
 ### Windows Phone
 
 - The Windows Phone platform doesn't allow applications to read the content of the clipboard. Using the `paste` method will return an error.
