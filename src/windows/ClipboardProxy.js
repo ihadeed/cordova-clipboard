@@ -54,7 +54,16 @@ module.exports = {
         }
     },
     copyString: copy,
-    pasteString: paste
+    pasteString: paste,
+    clear: function (successCallback, errorCallback, args) {
+        try {
+            if(Windows.ApplicationModel.DataTransfer.Clipboard.getContent()){
+                successCallback(true);
+            }
+        } catch (e) {
+            errorCallback(e);;
+        }
+    }
 }; // exports
 
 require("cordova/exec/proxy").add("Clipboard", module.exports);

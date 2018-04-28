@@ -18,6 +18,7 @@ public class Clipboard extends CordovaPlugin {
     private static final String actionCopyString = "copyString";
     private static final String actionPaste = "paste";
     private static final String actionPasteString = "pasteString";
+    private static final String actionClear = "clear";
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -50,6 +51,17 @@ public class Clipboard extends CordovaPlugin {
                 if (text == null) text = "";
 
                 callbackContext.success(text);
+
+                return true;
+            } catch (Exception e) {
+                callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, e.toString()));
+            }
+        } else if (action.equals(actionClear)) {
+            try {
+                ClipData clip = ClipData.newPlainText("", "");
+                clipboard.setPrimaryClip(clip);
+
+                callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
 
                 return true;
             } catch (Exception e) {

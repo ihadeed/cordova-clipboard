@@ -64,5 +64,21 @@ namespace Cordova.Extension.Commands
         {
             paste(options);
         }
+
+        public void clear()
+        {
+            System.Windows.Deployment.Current.Dispatcher.BeginInvoke(() =>
+            {
+                try
+                {
+                    System.Windows.Clipboard.Clear();
+                    DispatchCommandResult(new PluginResult(PluginResult.Status.OK, true));
+                }
+                catch
+                {
+                    DispatchCommandResult(new PluginResult(PluginResult.Status.ERROR));
+                }
+            });
+        }
     }
 }

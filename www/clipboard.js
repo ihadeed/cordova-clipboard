@@ -43,12 +43,20 @@ Clipboard.prototype.paste = function (onSuccess, onFail) {
 
 /**
  * Gets the clipboard string value (not object)
- *
  * @param {Function} onSuccess The function to call in case of success
  * @param {Function} onFail    The function to call in case of error
  */
 Clipboard.prototype.pasteString = function (onSuccess, onFail) {
 	cordova.exec(onSuccess, onFail, "Clipboard", "pasteString", []);
+};
+ 
+/**
+ * Clear the clipboard content
+ * @param {Function} onSuccess The function to call in case of success
+ * @param {Function} onFail    The function to call in case of error
+ */
+Clipboard.prototype.clear = function (onSuccess, onFail) {
+	cordova.exec(onSuccess, onFail, "Clipboard", "clear", []);
 };
 
 // Register the plugin
