@@ -36,7 +36,12 @@ namespace Cordova.Extension.Commands
 
         }
 
-        public void paste()
+        public void copyString(string options)
+        {
+            copy(options);
+        }
+
+        public void paste(string options)
         {
             string text = "";
 
@@ -53,6 +58,11 @@ namespace Cordova.Extension.Commands
                     DispatchCommandResult(new PluginResult(PluginResult.Status.ERROR));
                 }
             });
+        }
+
+        public void pasteString(string options)
+        {
+            paste(options);
         }
 
         public void clear()

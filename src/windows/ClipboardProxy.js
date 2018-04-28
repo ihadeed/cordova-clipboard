@@ -35,7 +35,7 @@ module.exports = {
             Windows.ApplicationModel.DataTransfer.Clipboard.setContent(dataPackage);
             successCallback(text);
         } catch (e) {
-            errorCallback(e);;
+            errorCallback(e);
         }
     },
     paste: function (successCallback, errorCallback, args) {
@@ -50,9 +50,11 @@ module.exports = {
                 });
             }
         } catch (e) {
-            errorCallback(e);;
+            errorCallback(e);
         }
     },
+    copyString: copy,
+    pasteString: paste,
     clear: function (successCallback, errorCallback, args) {
         try {
             if(Windows.ApplicationModel.DataTransfer.Clipboard.getContent()){
